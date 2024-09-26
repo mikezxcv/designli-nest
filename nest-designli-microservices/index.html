@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificaciones en Tiempo Real</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .notification-container {
+            margin-top: 50px;
+        }
+
+        .notification-card {
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .notification-header {
+            background-color: #0d6efd;
+            color: white;
+            border-radius: 10px 10px 0 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container notification-container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card text-center notification-card">
+                    <div class="card-header notification-header">
+                        <h4>Notificaciones en Tiempo Real</h4>
+                    </div>
+                    <div class="card-body" id="notifications">
+                        <p class="text-muted">Esperando notificaciones...</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Miguel Luis Martinez Perez - Test Microservices Designli
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Socket.IO -->
+    <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
+
+    <!-- Custom Script -->
+    <script>
+        const socket = io('http://localhost:3001');
+
+        socket.on('notification', (data) => {
+            const notificationsDiv = document.getElementById('notifications');
+
+            // Crear nuevo elemento de notificación
+            const newNotification = document.createElement('div');
+            newNotification.classList.add('alert', 'alert-info', 'text-start');
+            newNotification.textContent = data.message;
+
+            // Insertar la nueva notificación en la parte superior
+            notificationsDiv.prepend(newNotification);
+        });
+    </script>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
