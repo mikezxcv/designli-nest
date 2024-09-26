@@ -13,15 +13,7 @@ import { ExternalApiModule } from './modules/external-api/external-api.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: async (configService: ConfigService) =>
-        databaseConfig(configService),
-    }),
-    AuthenticationModule,
     DesignliTestModule,
-    // ExternalApiModule,
   ],
   controllers: [AppController],
   providers: [AppService],
