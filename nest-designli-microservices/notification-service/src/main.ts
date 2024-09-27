@@ -4,23 +4,28 @@ import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
 
 async function bootstrap() {
+  const host = process.env.host || '0.0.0.0';
+  const port = +process.env.PORT || 3001;
+  const portMicroservice = +process.env.PORTMICROSERVICE || 4001;
+
   const logger = new Logger('notification-service');
   const app = await NestFactory.create(AppModule);
 
   // Iniciar WebSocket Gateway
-  app.listen(3001); // Puerto del WebSocket para los clientes
+  app.listen(port); // Puerto del WebSocket para los clientes
 
   // Iniciar microservicio TCP para recibir eventos
-  const microservice = app.connectMicroservice<MicroserviceOptions>({
+  app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.TCP,
     options: {
-      host: 'localhost',
-      port: 4001, // Puerto donde este servicio escuchará mensajes
+      host: host,
+      port: portMicroservice, // Puerto donde este servicio escuchará mensajes
     },
   });
 
   await app.startAllMicroservices();
-  logger.debug('Notification service is running at port 4001');
-  logger.debug('websocket is running at port 3001');
+  logger.debug('Notification microservice is running at port ' + portMicroservice);
+  logger.debug(`websocket is running at port ${port}`);
+
 }
 bootstrap();

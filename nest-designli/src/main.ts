@@ -7,9 +7,12 @@ import { ErrorInterceptor } from './common/interceptors/error.interceptor'; // C
 async function bootstrap() {
   const logger = new Logger('ApiGateway');
   const basePath = process.env.basePath || 'api/v1';
-  const host = process.env.host || 'localhost';
+  const host = process.env.host || '0.0.0.0';
   const port = +process.env.PORT || 3000;
   const app = await NestFactory.create(AppModule);
+  app.enableCors({
+    origin: '*'
+  })
 
   const config = new DocumentBuilder()
     .setTitle('API GATEWAY')
