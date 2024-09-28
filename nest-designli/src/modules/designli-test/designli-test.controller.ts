@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { EmailEventDto } from './dto/email-event.dto';
 import { DesignliTestService } from './services/designli-test.service';
-import { ApiQuery } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery } from '@nestjs/swagger';
 
 @Controller('designli-test')
 export class DesignliTestController {
@@ -14,6 +14,10 @@ export class DesignliTestController {
   }
 
   @Get('email-json-attachment')
+  @ApiOperation({
+    summary:
+      'There are two files with attachment, EMAIL_ATTACHMENT_JSON.eml and EMAIL_ATTACHMENT_JSON_WITH_LINK, use any to test, the path for test is: src/designli/filename.eml ',
+  })
   @ApiQuery({
     name: 'filePath',
     required: true,
