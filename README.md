@@ -66,7 +66,7 @@ Este proyecto consta de dos microservicios y un archivo HTML para demostrar la c
 
 2. Clona el repositorio:
    ```
-   git clone <URL_DEL_REPOSITORIO>
+   git clone https://github.com/mikezxcv/designli-nest.git
    cd designli-nest
    ```
 
@@ -125,7 +125,3 @@ Para más detalles sobre la API y los endpoints disponibles, consulta la documen
 ## Contribución
 
 Si deseas contribuir a este proyecto, por favor crea un fork del repositorio, realiza tus cambios y envía un pull request para su revisión.
-
-## Licencia
-
-[Incluye aquí la información de la licencia de tu proyecto]
