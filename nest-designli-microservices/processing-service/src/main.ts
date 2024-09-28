@@ -12,7 +12,7 @@ async function bootstrap() {
   const logger = new Logger('processing-service');
   const app = await NestFactory.create(AppModule);
   const config = new DocumentBuilder()
-    .setTitle('API GATEWAY')
+    .setTitle('Processing Service')
     .setDescription('The API GATEWAY for the application PROCESSING-SERVICE')
     .setVersion('1.0')
     .addTag('API GATEWAY')

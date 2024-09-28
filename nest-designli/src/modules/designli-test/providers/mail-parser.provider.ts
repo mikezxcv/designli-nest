@@ -30,8 +30,15 @@ export class EmailParserProvider {
 
   async fetchJsonFromUrl(url: string) {
     console.log(url);
-    const response = await axios.get(url);
-    console.log(response);
-    return response.data;
+    try {
+      const response = await axios.get(url);
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      return {
+        message: 'valid url: ' + url + ' but can not extract informacion using axios.get'
+      }
+    }
+
   }
 }

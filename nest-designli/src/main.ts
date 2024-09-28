@@ -15,8 +15,8 @@ async function bootstrap() {
   })
 
   const config = new DocumentBuilder()
-    .setTitle('API GATEWAY')
-    .setDescription('The API GATEWAY for the application')
+    .setTitle('Nest Designli-test')
+    .setDescription('Two exercises described in the technical test')
     .setVersion('1.0')
     .addTag('API GATEWAY')
     .addServer(basePath)
